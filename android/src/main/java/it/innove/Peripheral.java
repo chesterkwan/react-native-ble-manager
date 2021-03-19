@@ -287,8 +287,6 @@ public class Peripheral extends BluetoothGattCallback {
 
 		} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
 
-			this.disconnect(true);
-
 			sendConnectionEvent(device, "BleManagerDisconnectPeripheral", status);
 			List<Callback> callbacks = Arrays.asList(writeCallback, retrieveServicesCallback, readRSSICallback,
 					readCallback, registerNotifyCallback, requestMTUCallback);
@@ -308,6 +306,8 @@ public class Peripheral extends BluetoothGattCallback {
 			readRSSICallback = null;
 			registerNotifyCallback = null;
 			requestMTUCallback = null;
+
+			this.disconnect(true);
 		}
 
 	}
